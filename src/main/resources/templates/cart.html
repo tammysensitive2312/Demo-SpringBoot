@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mx-auto">
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+
+            <th>
+                Price
+            </th>
+
+            <th>
+                Quantity
+            </th>
+
+            <th>
+                Amount
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="cartItem:${cartItems}">
+            <td th:text="${cartItem.getProduct().getTitle()}"></td>
+            <td th:text="${cartItem.getProduct().getPrice()}"></td>
+            <td>
+
+                <div class="flex items-center space-x-2">
+                    <a th:href="@{/update-quantity(id=${cartItem.getProduct().getId()},quantity=-1)}">-</a>
+                    <div th:text="${cartItem.getQuantity()}"></div>
+                    <a th:href="@{/update-quantity(id=${cartItem.getProduct().getId()},quantity=1)}">+</a>
+                </div>
+
+            </td>
+            <td th:text="${cartItem.getAmount()}"></td>
+            <td>
+                <a th:href="@{/remove-cart-item(id=${cartItem.getProduct().getId()})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/empty-cart}">Clear Cart</a>
+</div>
+</body>
+</html>
