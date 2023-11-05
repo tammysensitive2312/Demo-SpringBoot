@@ -1,0 +1,2 @@
+Json Web Token
+Token lưu trữ trên máy của client, mỗi lần user gửi request tới sever sẽ kèm theo token để xác thực ng dùng
